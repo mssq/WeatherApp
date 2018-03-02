@@ -11,7 +11,7 @@ export const fetchWeather = (city) => {
       .then((response) => {
         setTimeout(() => {
           dispatch({type: RECEIVE_WEATHER, payload: response.data})
-        }, 500)
+        }, 1000)
       })
       .catch((err) => {
         dispatch({type: FETCH_WEATHER_ERROR, payload: err})
