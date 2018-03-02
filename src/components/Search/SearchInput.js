@@ -28,11 +28,12 @@ class SearchInput extends Component {
       buttonStyle: {
         width: "70px",
         fontSize: "16px",
+        color: "white",
         padding: "12px 0px 12px 0px",
-        marginLeft: "10px",
-        backgroundColor: "white",
+        marginLeft: "15px",
+        backgroundColor: "#4b81c9",
         boxSizing: "border-box",
-        border: "2px solid #ccc",
+        border: "0px",
         borderRadius: "4px"
       }
     };
