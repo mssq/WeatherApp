@@ -1,8 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/index.css';
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './components/App';
+import weatherReducer from './reducers/weatherReducer';
+import registerServiceWorker from './registerServiceWorker';
+import './css/index.css';
+
+const middleware = applyMiddleware(thunk);
+const store = createStore(weatherReducer, middleware);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
