@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { ClipLoader } from 'react-spinners';
 
 import { fetchWeather } from '../actions/weatherActions';
 import SearchInput from './Search/SearchInput';
@@ -14,6 +15,14 @@ class App extends Component {
   }
 
   render() {
+    let loader = null;
+    let results = null;
+    if (this.props.weather !== null) {
+      loader = <ClipLoader color={'#3d3d3d'} loading={this.props.weather.loading} />
+      if (!this.props.weather.loading)
+        results = <WeatherResult weather={this.props.weather} />
+    }
+
     return (
       <div className="App">
         <header className="App-header">
@@ -21,7 +30,10 @@ class App extends Component {
           <h1 className="App-title">Weather Forecast For Cities</h1>
         </header>
         <SearchInput clicked={this.searchClicked}/>
-        {this.props.weather !== null ? <WeatherResult weather={this.props.weather}/> : null}
+        <div className='sweet-loading'>
+          {loader}
+        </div>
+        {results}
       </div>
     );
   }

@@ -29,7 +29,6 @@ button {
   font-size: large;
 }
 
-
 .search-button:hover {
   background-color: #568cce !important;
   box-shadow: 0px 0px 3px #4b81c9;
@@ -38,6 +37,10 @@ button {
 .search-button:active {
   background-color: #63cc55 !important;
   box-shadow: 0px 0px 3px #63cc55;
+}
+
+.sweet-loading {
+  margin: 15px 0px 15px 0px;
 }
 
 @keyframes App-logo-move {
