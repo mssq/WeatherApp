@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-move 30s infinite;
+  height: 100px;
+}
+
+.App-header {
+  background-color: #4b81c9;
+  height: 140px;
+  padding: 10px 0px 20px 0px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.App-title {
+  font-size: 2em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-move {
+  0% {
+    transform: translate3d(0px, 0px, 0px);
+  }
+  25% {
+      transform: translate3d(100px, 0px, 0px);
+  }
+  50% {
+    transform: translate3d(0px, 0px, 0px);
+  }
+  75% {
+    transform: translate3d(-100px, 0px, 0px);
+  }
+  100% {
+      transform: translate3d(0px, 0px, 0px);
+  }
+}
