@@ -14,8 +14,9 @@ const weatherReducer = (state=INITIAL_STATE, action) => {
       console.log('fetch_weather_error');
       return null;
     case RECEIVE_WEATHER:
-      console.log('receive_weather', action.payload);
+      console.log('receive_weather');
       return {
+        id: action.payload.id,
         temp: action.payload.main.temp,
         humidity: action.payload.main.humidity,
         wind: action.payload.wind.speed,
