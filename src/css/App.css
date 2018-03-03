@@ -29,6 +29,10 @@ button {
   font-size: large;
 }
 
+.search-button {
+  margin-bottom: 20px;
+}
+
 .search-button:hover {
   background-color: #568cce !important;
   box-shadow: 0px 0px 3px #4b81c9;
@@ -41,6 +45,118 @@ button {
 
 .sweet-loading {
   margin: 15px 0px 15px 0px;
+}
+
+.weather-info {
+  display: inline-block;
+  background-color: #f3f3f3;
+  width: 500px;
+  height: 200px;
+  margin: 0 auto;
+  margin-right: 30px;
+  border-radius: 10px 0px 0px 10px;
+  box-shadow: 0px 2px 2px rgb(168, 168, 168);
+}
+
+.weather-main-data {
+  background-color: #f3f3f3;
+  color: #000;
+  float: left;
+  width: 140px;
+  height: 200px;
+  border-right: 3px solid #ffffff;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.weather-main-data p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  margin: 20px 0px 10px 0px;
+  font-size: 32px;
+}
+
+.weather-main-data h1 {
+  font-family: 'Ubuntu', sans-serif;
+  display: inline-block;
+  letter-spacing: -3px;
+  font-size: 60px;
+  margin: 20px 0px 0px 0px;
+}
+
+.weather-main-data h2 {
+  font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  letter-spacing: -2px;
+  font-size: 30px;
+  vertical-align: bottom;
+  padding-left: 2px;
+}
+
+.weather-state {
+  font-size: 60px;
+  height: 60px;
+  margin-top: 20px;
+  display: block;
+  color: black;
+}
+
+.weather-country {
+  background-color: #282828;
+  color: #fdfdfd;
+  height: 60px;
+  width: 357px;
+  float: right;
+  border-bottom: 3px solid #ffffff;
+}
+
+.weather-country h1 {
+  font-family: 'Roboto', sans-serif;
+  margin: 0px;
+  line-height: 60px;
+}
+
+.weather-secondary-data {
+  font-family: 'Roboto', sans-serif;
+  padding-top: 60px;
+  height: 140px;
+}
+
+.weather-buttons {
+  display: inline-block;
+}
+
+.weather-buttons button {
+  display: block;
+  width: 45px;
+  height: 45px;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: white;
+  border: none;
+}
+
+.button-add {
+  background-color: #b8e2ba;
+}
+
+.button-add:hover {
+  background-color: #4CAF50;
+}
+
+.button-add:active {
+  background-color: #62e967;
+}
+
+.button-remove {
+  background-color: #ebc9c9;
+}
+
+.button-remove:hover {
+  background-color: #f44336
+}
+
+.button-remove:active {
+  background-color: #ff3123
 }
 
 @keyframes App-logo-move {
