@@ -47,6 +47,10 @@ button {
   margin: 15px 0px 15px 0px;
 }
 
+.weather {
+  margin-top: 20px;
+}
+
 .weather-info {
   display: inline-block;
   background-color: #f3f3f3;
@@ -123,6 +127,7 @@ button {
 
 .weather-buttons {
   display: inline-block;
+  position: relative;
 }
 
 .weather-buttons button {
@@ -133,10 +138,12 @@ button {
   font-size: 28px;
   color: white;
   border: none;
+  position: absolute;
 }
 
 .button-add {
   background-color: #b8e2ba;
+  top: -105px;
 }
 
 .button-add:hover {
@@ -149,6 +156,7 @@ button {
 
 .button-remove {
   background-color: #ebc9c9;
+  top: -40px;
 }
 
 .button-remove:hover {
