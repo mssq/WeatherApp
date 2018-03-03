@@ -4,23 +4,45 @@ import { ClipLoader } from 'react-spinners';
 
 import { fetchWeather } from '../actions/weatherActions';
 import SearchInput from './Search/SearchInput';
-import WeatherResult from './Weather/WeatherResult';
+import WeatherCard from './Weather/WeatherCard';
 import logo from '../img/cloud.svg';
 import '../css/App.css';
 
 class App extends Component {
+  state = {
+    userWeathers: []
+  }
 
   searchClicked = (cityName) => {
     this.props.fetchWeather(cityName)
   }
 
+  addWeather = (weather) => {
+    const weathers = this.state.userWeathers.slice();
+    weathers.push(weather);
+    this.setState({
+      userWeathers: weathers
+    });
+  }
+
+  renderSavedWeathers = () => {
+    if (this.state.userWeathers.length > 0) {
+      return (
+        this.state.userWeathers.slice().reverse().map(weather => {
+          return <WeatherCard weather={weather} renderButtons={false} add={this.addWeather} />;
+        })
+      );
+    }
+  }
+
   render() {
+    console.log('RENDER USERWEATHERS', this.state.userWeathers);
     let loader = null;
     let results = null;
     if (this.props.weather !== null) {
-      loader = <ClipLoader color={'#3d3d3d'} loading={this.props.weather.loading} />
+      loader = <ClipLoader color={'#3d3d3d'} loading={this.props.weather.loading} />;
       if (!this.props.weather.loading)
-        results = <WeatherResult weather={this.props.weather} />
+        results = <WeatherCard weather={this.props.weather} renderButtons={true} add={this.addWeather} />;
     }
 
     return (
@@ -34,6 +56,7 @@ class App extends Component {
           {loader}
         </div>
         {results}
+        {this.renderSavedWeathers()}
       </div>
     );
   }
