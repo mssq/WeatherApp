@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import '../../css/weather-icons.css';
 
-class WeatherResult extends Component {
+class WeatherCard extends Component {
 
   convertToCelcius = (kelvin) => {
     return Math.round((kelvin - 273.15));
@@ -35,6 +35,23 @@ class WeatherResult extends Component {
   }
 
   weatherCard = (weather) => {
+    let buttons = null;
+    if (this.props.renderButtons) {
+      buttons = (
+        <div className="weather-buttons">
+          <button 
+            type="button" 
+            className="button-add"
+            onClick={() => this.props.add(weather)}>
+            ✓
+          </button>
+          <button type="button" className="button-remove">
+            &#x2715;
+          </button>
+        </div>
+      );
+    }
+
     return (
       <div className="weather">
         <div className="weather-info">
@@ -50,14 +67,7 @@ class WeatherResult extends Component {
             <h2>Wind: {weather.wind} m/s</h2>
           </div>
         </div>
-        <div className="weather-buttons">
-          <button type="button" className="button-add">
-            ✓
-          </button>
-          <button type="button" className="button-remove">
-            &#x2715;
-          </button>
-        </div>
+        {buttons}
       </div>
     );
   }
@@ -70,4 +80,4 @@ class WeatherResult extends Component {
   }
 }
 
-export default WeatherResult;
+export default WeatherCard;
