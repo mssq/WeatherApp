@@ -36,7 +36,7 @@ class WeatherCard extends Component {
 
   weatherCard = (weather) => {
     let buttons = null;
-    if (this.props.renderButtons) {
+    if (this.props.saved) {
       buttons = (
         <div className="weather-buttons">
           <button 
@@ -45,24 +45,89 @@ class WeatherCard extends Component {
             onClick={() => this.props.add(weather)}>
             ✓
           </button>
-          <button type="button" className="button-remove">
-            &#x2715;
-          </button>
+        </div>
+      );
+    }
+
+    const style = {
+      weather: {
+        marginTop: '20px'
+      },
+      weatherInfo: {
+        display: 'inline-block',
+        backgroundColor: '#f3f3f3',
+        width: '500px',
+        height: '200px',
+        margin: '0 auto',
+        marginRight: '30px',
+        borderRadius: '10px 0px 0px 10px',
+        boxShadow: '0px 2px 2px rgb(168, 168, 168)'
+      },
+      weatherMainData: {
+        backgroundColor: '#f3f3f3',
+        color: '#000',
+        float: 'left',
+        width: '140px',
+        height: '200px',
+        borderRight: '3px solid #ffffff',
+        borderRadius: '10px 0px 0px 10px'
+      },
+      weatherCountry: {
+        backgroundColor: '#415ba6',
+        color: '#fdfdfd',
+        height: '60px',
+        width: '357px',
+        float: 'right',
+        borderBottom: '3px solid #ffffff'
+      },
+      weatherCountrySaved: {
+        position: 'relative',
+        backgroundColor: '#282828',
+        color: '#fdfdfd',
+        height: '60px',
+        width: '357px',
+        float: 'right',
+        borderBottom: '3px solid #ffffff'
+      },
+      weatherSecondaryData: {
+        fontFamily: 'Roboto, sans-serif',
+        paddingTop: '60px',
+        height: '140px'
+      }
+    }
+
+    // if user saved the weather
+    // change the styling for that card
+    let savedStyle = style.weatherCountry;
+    if (!this.props.saved) {
+      savedStyle = style.weatherCountrySaved;
+    }
+    // show the delete button for saved weathers
+    let deleteButton = null;
+    if (!this.props.saved) {
+      deleteButton = (
+        <div 
+          className="delete-button"
+          onClick={() => this.props.remove(weather.id)}
+        >
+          &#x2715;
         </div>
       );
     }
 
     return (
-      <div className="weather">
-        <div className="weather-info">
-          <div className="weather-main-data">
+      <div className="weather" style={style.weather} >
+        <div className="weather-info" style={style.weatherInfo} >
+          <div className="weather-main-data" style={style.weatherMainData} >
             {this.convertWeatherStateToImage(weather.desc)}
-            <h1>{this.convertToCelcius(weather.temp)}</h1><h2>°C</h2>
+            <h1>{this.convertToCelcius(weather.temp)}</h1>
+            <h2>°C</h2>
           </div>
-          <div className="weather-country">
+          <div className="weather-country" style={savedStyle} >
+            {deleteButton}
             <h1>{weather.city}, {weather.countryCode}</h1>
           </div>
-          <div className="weather-secondary-data">
+          <div className="weather-secondary-data" style={style.weatherSecondaryData} >
             <h2>Humidity: {weather.humidity}%</h2>
             <h2>Wind: {weather.wind} m/s</h2>
           </div>
@@ -73,7 +138,6 @@ class WeatherCard extends Component {
   }
 
   render() {
-    console.log('WEATHER', this.props.weather);
     return (
       this.weatherCard(this.props.weather)
     )
