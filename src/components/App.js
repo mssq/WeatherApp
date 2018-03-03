@@ -17,6 +17,14 @@ class App extends Component {
     this.props.fetchWeather(cityName)
   }
 
+  removeWeather = (id) => {
+    let weathers = this.state.userWeathers.slice();
+    weathers = weathers.filter(weather => weather.id !== id);
+    this.setState({
+      userWeathers: weathers
+    });
+  }
+
   addWeather = (weather) => {
     const weathers = this.state.userWeathers.slice();
     weathers.push(weather);
@@ -29,20 +37,27 @@ class App extends Component {
     if (this.state.userWeathers.length > 0) {
       return (
         this.state.userWeathers.slice().reverse().map(weather => {
-          return <WeatherCard weather={weather} renderButtons={false} add={this.addWeather} />;
+          return <WeatherCard 
+            key={weather.id} 
+            weather={weather} 
+            saved={false} 
+            add={this.addWeather}
+            remove={this.removeWeather} />;
         })
       );
     }
   }
 
   render() {
-    console.log('RENDER USERWEATHERS', this.state.userWeathers);
     let loader = null;
     let results = null;
     if (this.props.weather !== null) {
       loader = <ClipLoader color={'#3d3d3d'} loading={this.props.weather.loading} />;
       if (!this.props.weather.loading)
-        results = <WeatherCard weather={this.props.weather} renderButtons={true} add={this.addWeather} />;
+        results = <WeatherCard 
+          weather={this.props.weather}
+          saved={true}
+          add={this.addWeather} />;
     }
 
     return (
