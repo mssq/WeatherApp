@@ -5,6 +5,13 @@ import '../../css/weather-icons.css';
 
 class WeatherCard extends Component {
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!this.props.weather.loading) {
+      return false;
+    }
+    return true;
+  }
+
   convertToCelcius = (kelvin) => {
     return Math.round((kelvin - 273.15));
   }
