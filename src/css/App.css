@@ -4,6 +4,9 @@ button {
 
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -12,6 +15,7 @@ button {
 }
 
 .App-header {
+  width: 100%;
   background-color: #4b81c9;
   height: 140px;
   padding: 10px 0px 20px 0px;
@@ -29,8 +33,17 @@ button {
   font-size: large;
 }
 
-.search-button {
+.search-weather {
   margin-bottom: 20px;
+}
+
+.saved-weathers {
+  display: flex;
+  flex-direction: column;
+  width: 530px;
+}
+
+.search-button {
   cursor: pointer;
 }
 
@@ -93,7 +106,15 @@ button {
 .weather-country h1 {
   font-family: 'Roboto', sans-serif;
   margin: 0px;
-  line-height: 60px;
+  line-height: 50px;
+}
+
+.weather-country p {
+  margin: 0px;
+}
+
+.weather-secondary-data h2 {
+  margin: 23px 0px 23px 0px;
 }
 
 .weather-buttons {
@@ -124,6 +145,26 @@ button {
 
 .button-add:active {
   background-color: #62e967;
+}
+
+@media(min-width: 1060px) {
+
+  .saved-weathers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 1060px;
+  }
+}
+
+@media(min-width: 1600px) {
+
+  .saved-weathers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 1600px;
+  }
 }
 
 @keyframes App-logo-move {
