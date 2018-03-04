@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ClipLoader } from 'react-spinners';
+import AlertS from 'react-s-alert';
 
 import { fetchWeather } from '../actions/weatherActions';
 import SearchInput from './Search/SearchInput';
 import WeatherCard from './Weather/WeatherCard';
 import logo from '../img/cloud.svg';
 import '../css/App.css';
+import '../css/s-alert-default.css';
+import '../css/scale.css';
 
 class App extends Component {
   state = {
@@ -66,12 +69,18 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Weather Forecast For Cities</h1>
         </header>
+
         <SearchInput clicked={this.searchClicked}/>
+
         <div className='sweet-loading'>
           {loader}
         </div>
+
         {results}
+
         {this.renderSavedWeathers()}
+
+        <AlertS stack={{limit: 1}} />
       </div>
     );
   }
