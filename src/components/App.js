@@ -7,7 +7,7 @@ import { fetchWeather } from '../actions/weatherActions';
 import SearchInput from './Search/SearchInput';
 import WeatherCard from './Weather/WeatherCard';
 import Alert from './Alert/Alert';
-import logo from '../img/cloud.svg';
+import Header from './Header/Header';
 import '../css/App.css';
 import '../css/s-alert-default.css';
 import '../css/scale.css';
@@ -82,22 +82,21 @@ class App extends Component {
 
   render() {
     let loader = null;
-    let results = null;
+    let result = null;
     if (this.props.weather !== null) {
       loader = <ClipLoader color={'#3d3d3d'} loading={this.props.weather.loading} />;
-      if (!this.props.weather.loading)
-        results = <WeatherCard 
+      
+      if (!this.props.weather.loading) {
+        result = <WeatherCard 
           weather={this.props.weather}
           saved={true}
           add={this.addWeather} />;
+      }  
     }
 
     return (
       <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Weather Forecast For Cities</h1>
-        </header>
+        <Header />
 
         <SearchInput clicked={this.searchClicked}/>
 
@@ -106,9 +105,10 @@ class App extends Component {
         </div>
 
         <div className='search-weather'>
-          {results}
+          {result}
+          <hr className="divider" />
         </div>
-        
+
         <div className='saved-weathers'>
           {this.renderSavedWeathers()}
         </div>
