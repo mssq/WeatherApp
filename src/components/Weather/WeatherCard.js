@@ -12,10 +12,6 @@ class WeatherCard extends Component {
     return true;
   }
 
-  convertToCelcius = (kelvin) => {
-    return Math.round((kelvin - 273.15));
-  }
-
   convertWeatherStateToImage = (state) => {
     switch(state) {
       case 'Thunderstorm':
@@ -40,6 +36,10 @@ class WeatherCard extends Component {
       default:
         return <i className="wi wi-cloud weather-state"></i>;
     }
+  }
+
+  convertToCelcius = (kelvin) => {
+    return Math.round((kelvin - 273.15));
   }
 
   weatherCard = (weather) => {
@@ -106,13 +106,11 @@ class WeatherCard extends Component {
 
     // if user saved the weather
     // change the styling for that card
+    // and show the delete button for saved weathers
+    let deleteButton = null;
     let savedStyle = style.weatherCountry;
     if (!this.props.saved) {
       savedStyle = style.weatherCountrySaved;
-    }
-    // and show the delete button for saved weathers
-    let deleteButton = null;
-    if (!this.props.saved) {
       deleteButton = (
         <div 
           className="delete-button"
