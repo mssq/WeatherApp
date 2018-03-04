@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Alert from '../Alert/Alert';
 import '../../css/weather-icons.css';
 
 class WeatherCard extends Component {
@@ -102,7 +103,7 @@ class WeatherCard extends Component {
     if (!this.props.saved) {
       savedStyle = style.weatherCountrySaved;
     }
-    // show the delete button for saved weathers
+    // and show the delete button for saved weathers
     let deleteButton = null;
     if (!this.props.saved) {
       deleteButton = (
@@ -138,9 +139,11 @@ class WeatherCard extends Component {
   }
 
   render() {
-    return (
-      this.weatherCard(this.props.weather)
-    )
+    if (this.props.weather.error === 'none') {
+      return this.weatherCard(this.props.weather);
+    } else {
+      return <Alert message={this.props.weather.error} />
+    }
   }
 }
 
