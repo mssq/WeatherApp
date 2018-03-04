@@ -93,10 +93,10 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Weather Forecast For Cities</h1>
+      <div className='App'>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
+          <h1 className='App-title'>Weather Forecast For Cities</h1>
         </header>
 
         <SearchInput clicked={this.searchClicked}/>
@@ -105,9 +105,13 @@ class App extends Component {
           {loader}
         </div>
 
-        {results}
-
-        {this.renderSavedWeathers()}
+        <div className='search-weather'>
+          {results}
+        </div>
+        
+        <div className='saved-weathers'>
+          {this.renderSavedWeathers()}
+        </div>
         
         {this.state.duplicateError ? this.renderDupliateError() : null}
         <AlertS stack={{limit: 1}} />
