@@ -2,6 +2,7 @@ import { FETCH_WEATHER_START, FETCH_WEATHER_ERROR,
   RECEIVE_WEATHER } from '../constants';
 
 const INITIAL_STATE = {
+  weather: null,
   loading: false,
   error: 'none'
 }
@@ -21,19 +22,21 @@ const weatherReducer = (state=INITIAL_STATE, action) => {
       return { ...state, loading: false, error: action.payload.message };
     case RECEIVE_WEATHER:
       return {
-        id: action.payload.id,
-        temp: action.payload.main.temp,
-        humidity: action.payload.main.humidity,
-        wind: action.payload.wind.speed,
-        city: action.payload.name,
-        countryCode: action.payload.sys.country,
-        desc: action.payload.weather[0].main,
-        time: timeFormatting(new Date()),
+        weather: {
+          id: action.payload.id,
+          temp: action.payload.main.temp,
+          humidity: action.payload.main.humidity,
+          wind: action.payload.wind.speed,
+          city: action.payload.name,
+          countryCode: action.payload.sys.country,
+          desc: action.payload.weather[0].main,
+          time: timeFormatting(new Date())
+        },
         loading: false,
         error: 'none' 
       };
     default:
-      return null;
+      return state;
   }
 }
 
