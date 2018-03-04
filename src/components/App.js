@@ -71,7 +71,8 @@ class App extends Component {
         this.state.userWeathers.slice().reverse().map(weather => {
           return <WeatherCard 
             key={weather.id} 
-            weather={weather} 
+            weather={weather}
+            error={this.props.error} 
             saved={false} 
             add={this.addWeather}
             remove={this.removeWeather} />;
@@ -84,12 +85,14 @@ class App extends Component {
     let loader = null;
     let result = null;
     if (this.props.weather !== null) {
-      loader = <ClipLoader color={'#3d3d3d'} loading={this.props.weather.loading} />;
+      loader = <ClipLoader color={'#3d3d3d'} loading={this.props.loading} />;
       
-      if (!this.props.weather.loading) {
+      if (!this.props.loading) {
         result = <WeatherCard 
           weather={this.props.weather}
           saved={true}
+          loading={this.props.loading}
+          error={this.props.error}
           add={this.addWeather} />;
       }  
     }
@@ -122,7 +125,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    weather: state
+    weather: state.weather,
+    loading: state.loading,
+    error: state.error
   }
 }
 
