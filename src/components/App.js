@@ -6,6 +6,7 @@ import AlertS from 'react-s-alert';
 import { fetchWeather } from '../actions/weatherActions';
 import SearchInput from './Search/SearchInput';
 import WeatherCard from './Weather/WeatherCard';
+import Alert from './Alert/Alert';
 import logo from '../img/cloud.svg';
 import '../css/App.css';
 import '../css/s-alert-default.css';
@@ -13,7 +14,16 @@ import '../css/scale.css';
 
 class App extends Component {
   state = {
-    userWeathers: []
+    userWeathers: [],
+    duplicateError: false
+  }
+
+  componentDidUpdate(nextProps, nextState) {
+    // Reset duplicateError status if it has changed
+    if (nextState.duplicateError !== this.state.duplicateError)
+      this.setState({
+        duplicateError: false
+      });
   }
 
   searchClicked = (cityName) => {
@@ -30,10 +40,29 @@ class App extends Component {
 
   addWeather = (weather) => {
     const weathers = this.state.userWeathers.slice();
-    weathers.push(weather);
-    this.setState({
-      userWeathers: weathers
-    });
+    // Check for duplicate
+    let duplicate = false;
+    weathers.forEach(w => {
+      if (w.id === weather.id)
+        duplicate = true;
+    })
+
+    // If it's not an duplicate, add it to the array
+    // else display error message
+    if (!duplicate) {
+      weathers.push(weather);
+      this.setState({
+        userWeathers: weathers
+      });
+    } else {
+      this.setState({
+        duplicateError: true
+      });
+    }
+  }
+
+  renderDupliateError = () => {
+    return <Alert message="the entry has already been added" />;
   }
 
   renderSavedWeathers = () => {
@@ -79,7 +108,8 @@ class App extends Component {
         {results}
 
         {this.renderSavedWeathers()}
-
+        
+        {this.state.duplicateError ? this.renderDupliateError() : null}
         <AlertS stack={{limit: 1}} />
       </div>
     );
