@@ -6,7 +6,7 @@ import '../../css/weather-icons.css';
 class WeatherCard extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (!this.props.weather.loading) {
+    if (!this.props.loading) {
       return false;
     }
     return true;
@@ -145,10 +145,10 @@ class WeatherCard extends Component {
   }
 
   render() {
-    if (this.props.weather.error === 'none') {
+    if (this.props.error === 'none') {
       return this.weatherCard(this.props.weather);
     } else {
-      return <Alert message={this.props.weather.error} />
+      return <Alert message={this.props.error} />
     }
   }
 }
