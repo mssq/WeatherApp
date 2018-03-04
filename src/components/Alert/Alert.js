@@ -10,7 +10,7 @@ class Alert extends Component  {
     AlertS.error(errorMessage, {
       position: 'top',
       effect: 'scale',
-      timeout: 2000,
+      timeout: 2500,
       offset: 20
     });
   }
