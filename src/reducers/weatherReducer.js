@@ -6,16 +6,20 @@ const INITIAL_STATE = {
   error: 'none'
 }
 
+const timeFormatting = (time) => {
+  const minutes = `${time.getMinutes() < 10 ? '0' : ''}${time.getMinutes()}`
+  const hours = `${time.getHours() < 10 ? '0' : ''}${time.getHours()}`
+
+  return `${hours}:${minutes} ${time.toLocaleDateString()}`;
+}
+
 const weatherReducer = (state=INITIAL_STATE, action) => {
   switch(action.type) {
     case FETCH_WEATHER_START:
-      console.log('fetch_weather_start');
       return { loading: true, error: 'none' };
     case FETCH_WEATHER_ERROR:
-      console.log('fetch_weather_error');
       return { ...state, loading: false, error: action.payload.message };
     case RECEIVE_WEATHER:
-      console.log('receive_weather');
       return {
         id: action.payload.id,
         temp: action.payload.main.temp,
@@ -24,10 +28,11 @@ const weatherReducer = (state=INITIAL_STATE, action) => {
         city: action.payload.name,
         countryCode: action.payload.sys.country,
         desc: action.payload.weather[0].main,
+        time: timeFormatting(new Date()),
         loading: false,
-        error: 'none' };
+        error: 'none' 
+      };
     default:
-      console.log('default');
       return null;
   }
 }
