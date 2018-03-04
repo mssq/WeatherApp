@@ -8,13 +8,15 @@ export const fetchWeather = (city) => {
   return (dispatch) => {
     dispatch({type: FETCH_WEATHER_START})
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`)
-      .then((response) => {
+      .then(response => {
         setTimeout(() => {
           dispatch({type: RECEIVE_WEATHER, payload: response.data})
         }, 1000)
       })
-      .catch((err) => {
-        dispatch({type: FETCH_WEATHER_ERROR, payload: err})
+      .catch(error => {
+        setTimeout(() => {
+          dispatch({type: FETCH_WEATHER_ERROR, payload: error.response.data})
+        }, 1000)
       })
   };
 }
