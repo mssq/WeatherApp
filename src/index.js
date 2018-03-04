@@ -6,7 +6,6 @@ import thunk from 'redux-thunk';
 
 import App from './components/App';
 import weatherReducer from './reducers/weatherReducer';
-import registerServiceWorker from './registerServiceWorker';
 import './css/index.css';
 
 const middleware = applyMiddleware(thunk);
@@ -18,4 +17,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-registerServiceWorker();
