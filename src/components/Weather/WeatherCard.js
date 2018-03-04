@@ -59,7 +59,7 @@ class WeatherCard extends Component {
 
     const style = {
       weather: {
-        marginTop: '20px'
+        marginBottom: '20px'
       },
       weatherInfo: {
         display: 'inline-block',
@@ -83,7 +83,7 @@ class WeatherCard extends Component {
       weatherCountry: {
         backgroundColor: '#415ba6',
         color: '#fdfdfd',
-        height: '60px',
+        height: '72px',
         width: '357px',
         float: 'right',
         borderBottom: '3px solid #ffffff'
@@ -92,15 +92,15 @@ class WeatherCard extends Component {
         position: 'relative',
         backgroundColor: '#282828',
         color: '#fdfdfd',
-        height: '60px',
+        height: '72px',
         width: '357px',
         float: 'right',
         borderBottom: '3px solid #ffffff'
       },
       weatherSecondaryData: {
         fontFamily: 'Roboto, sans-serif',
-        paddingTop: '60px',
-        height: '140px'
+        paddingTop: '72px',
+        height: '128px'
       }
     }
 
@@ -134,6 +134,7 @@ class WeatherCard extends Component {
           <div className="weather-country" style={savedStyle} >
             {deleteButton}
             <h1>{weather.city}, {weather.countryCode}</h1>
+            <p>{weather.time}</p>
           </div>
           <div className="weather-secondary-data" style={style.weatherSecondaryData} >
             <h2>Humidity: {weather.humidity}%</h2>
