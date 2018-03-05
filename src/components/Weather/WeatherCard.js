@@ -39,7 +39,7 @@ class WeatherCard extends Component {
 
   convertToCelcius = kelvin => Math.round((kelvin - 273.15));
 
-  weatherCard = (weather) => {
+  renderCard = (weather) => {
     let buttons = null;
     if (this.props.saved) {
       buttons = (
@@ -147,7 +147,7 @@ class WeatherCard extends Component {
 
   render() {
     if (this.props.error === 'none') {
-      return this.weatherCard(this.props.weather);
+      return this.renderCard(this.props.weather);
     }
     return <Alert message={this.props.error} />;
   }
