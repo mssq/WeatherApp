@@ -84,21 +84,19 @@ class App extends Component {
   }
 
   render() {
-    let loader = null;
+    // If not loading and there is a weather fetched
+    // save it to the result and render it
     let result = null;
-    if (this.props.weather !== null) {
-      loader = <ClipLoader color="#3d3d3d" loading={this.props.loading} />;
-      if (!this.props.loading) {
-        result = (
-          <WeatherCard
-            weather={this.props.weather}
-            saved
-            loading={this.props.loading}
-            error={this.props.error}
-            add={this.addWeather}
-          />
-        );
-      }
+    if (!this.props.loading && this.props.weather !== null) {
+      result = (
+        <WeatherCard
+          weather={this.props.weather}
+          saved
+          loading={this.props.loading}
+          error={this.props.error}
+          add={this.addWeather}
+        />
+      );
     }
 
     return (
@@ -110,7 +108,7 @@ class App extends Component {
         <SearchInput clicked={this.searchClicked} />
 
         <div className="sweet-loading">
-          {loader}
+          <ClipLoader color="#3d3d3d" loading={this.props.loading} />
         </div>
 
         <div className="search-weather">
