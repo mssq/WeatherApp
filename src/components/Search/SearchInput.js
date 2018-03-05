@@ -41,6 +41,7 @@ class SearchInput extends Component {
     return (
       <div className="search">
         <input 
+          className="search-input"
           style={style.inputStyle}
           type="text" 
           placeholder="City name"
