@@ -4,8 +4,7 @@ import Alert from '../Alert/Alert';
 import '../../css/weather-icons.css';
 
 class WeatherCard extends Component {
-
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate() {
     if (!this.props.loading) {
       return false;
     }
@@ -13,44 +12,43 @@ class WeatherCard extends Component {
   }
 
   convertWeatherStateToImage = (state) => {
-    switch(state) {
+    switch (state) {
       case 'Thunderstorm':
-        return <i className="wi wi-thunderstorm weather-state"></i>;
+        return <i className="wi wi-thunderstorm weather-state" />;
       case 'Drizzle':
-        return <i className="wi wi-sprinkle weather-state"></i>;
+        return <i className="wi wi-sprinkle weather-state" />;
       case 'Rain':
-        return <i className="wi wi-rain weather-state"></i>;
+        return <i className="wi wi-rain weather-state" />;
       case 'Snow':
-        return <i className="wi wi-snow weather-state"></i>;
+        return <i className="wi wi-snow weather-state" />;
       case 'Mist':
       case 'Fog':
-        return <i className="wi wi-fog weather-state"></i>;
+        return <i className="wi wi-fog weather-state" />;
       case 'Haze':
-        return <i className="wi wi-day-haze weather-state"></i>;
+        return <i className="wi wi-day-haze weather-state" />;
       case 'Clear':
-        return <i className="wi wi-day-sunny weather-state"></i>;
+        return <i className="wi wi-day-sunny weather-state" />;
       case 'Clouds':
-        return <i className="wi wi-cloudy weather-state"></i>;
+        return <i className="wi wi-cloudy weather-state" />;
       case 'Extreme':
-        return <i className="wi wi-tornado weather-state"></i>;
+        return <i className="wi wi-tornado weather-state" />;
       default:
-        return <i className="wi wi-cloud weather-state"></i>;
+        return <i className="wi wi-cloud weather-state" />;
     }
   }
 
-  convertToCelcius = (kelvin) => {
-    return Math.round((kelvin - 273.15));
-  }
+  convertToCelcius = kelvin => Math.round((kelvin - 273.15));
 
   weatherCard = (weather) => {
     let buttons = null;
     if (this.props.saved) {
       buttons = (
         <div className="weather-buttons">
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="button-add"
-            onClick={() => this.props.add(weather)}>
+            onClick={() => this.props.add(weather)}
+          >
             ✓
           </button>
         </div>
@@ -59,7 +57,7 @@ class WeatherCard extends Component {
 
     const style = {
       weather: {
-        marginBottom: '20px'
+        marginBottom: '20px',
       },
       weatherInfo: {
         display: 'inline-block',
@@ -69,7 +67,7 @@ class WeatherCard extends Component {
         margin: '0 auto',
         marginRight: '30px',
         borderRadius: '10px 0px 0px 10px',
-        boxShadow: '0px 2px 2px rgb(168, 168, 168)'
+        boxShadow: '0px 2px 2px rgb(168, 168, 168)',
       },
       weatherMainData: {
         backgroundColor: '#f3f3f3',
@@ -78,7 +76,7 @@ class WeatherCard extends Component {
         width: '140px',
         height: '200px',
         borderRight: '3px solid #ffffff',
-        borderRadius: '10px 0px 0px 10px'
+        borderRadius: '10px 0px 0px 10px',
       },
       weatherCountry: {
         backgroundColor: '#415ba6',
@@ -86,7 +84,7 @@ class WeatherCard extends Component {
         height: '72px',
         width: '357px',
         float: 'right',
-        borderBottom: '3px solid #ffffff'
+        borderBottom: '3px solid #ffffff',
       },
       weatherCountrySaved: {
         position: 'relative',
@@ -95,14 +93,14 @@ class WeatherCard extends Component {
         height: '72px',
         width: '357px',
         float: 'right',
-        borderBottom: '3px solid #ffffff'
+        borderBottom: '3px solid #ffffff',
       },
       weatherSecondaryData: {
         fontFamily: 'Roboto, sans-serif',
         paddingTop: '72px',
-        height: '128px'
-      }
-    }
+        height: '128px',
+      },
+    };
 
     // if user saved the weather
     // change the styling for that card
@@ -112,9 +110,12 @@ class WeatherCard extends Component {
     if (!this.props.saved) {
       savedStyle = style.weatherCountrySaved;
       deleteButton = (
-        <div 
+        <div
           className="delete-button"
+          role="button"
+          tabIndex="0"
           onClick={() => this.props.remove(weather.id)}
+          onKeyPress={() => this.props.remove(weather.id)}
         >
           &#x2715;
         </div>
@@ -147,9 +148,8 @@ class WeatherCard extends Component {
   render() {
     if (this.props.error === 'none') {
       return this.weatherCard(this.props.weather);
-    } else {
-      return <Alert message={this.props.error} />
     }
+    return <Alert message={this.props.error} />;
   }
 }
 

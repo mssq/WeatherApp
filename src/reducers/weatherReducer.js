@@ -1,21 +1,21 @@
-import { FETCH_WEATHER_START, FETCH_WEATHER_ERROR, 
+import { FETCH_WEATHER_START, FETCH_WEATHER_ERROR,
   RECEIVE_WEATHER } from '../constants';
 
 const INITIAL_STATE = {
   weather: null,
   loading: false,
-  error: 'none'
-}
+  error: 'none',
+};
 
 const timeFormatting = (time) => {
-  const minutes = `${time.getMinutes() < 10 ? '0' : ''}${time.getMinutes()}`
-  const hours = `${time.getHours() < 10 ? '0' : ''}${time.getHours()}`
+  const minutes = `${time.getMinutes() < 10 ? '0' : ''}${time.getMinutes()}`;
+  const hours = `${time.getHours() < 10 ? '0' : ''}${time.getHours()}`;
 
   return `${hours}:${minutes} ${time.toLocaleDateString()}`;
-}
+};
 
-const weatherReducer = (state=INITIAL_STATE, action) => {
-  switch(action.type) {
+const weatherReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
     case FETCH_WEATHER_START:
       return { loading: true, error: 'none' };
     case FETCH_WEATHER_ERROR:
@@ -30,15 +30,14 @@ const weatherReducer = (state=INITIAL_STATE, action) => {
           city: action.payload.name,
           countryCode: action.payload.sys.country,
           desc: action.payload.weather[0].main,
-          time: timeFormatting(new Date())
+          time: timeFormatting(new Date()),
         },
         loading: false,
-        error: 'none' 
+        error: 'none',
       };
     default:
       return state;
   }
-}
+};
 
 export default weatherReducer;
-  

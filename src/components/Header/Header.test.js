@@ -6,9 +6,7 @@ import Header from './Header';
 
 describe('Header', () => {
   it('should render correctly', () => {
-    const output = shallow(
-      <Header title="test title" />
-    );
+    const output = shallow(<Header title="test title" />);
     expect(shallowToJson(output)).toMatchSnapshot();
   });
 });

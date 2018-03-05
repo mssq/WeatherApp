@@ -9,7 +9,7 @@ class SearchInput extends Component {
     this.state = {
       searchValue: ''
     }
-  }
+  };
   
   render() {
     const style = {
@@ -23,7 +23,7 @@ class SearchInput extends Component {
         backgroundColor: "white",
         backgroundPosition: "5px 3px",
         backgroundRepeat: "no-repeat",
-        padding: "12px 20px 12px 40px"
+        padding: "12px 20px 12px 40px",
       },
       buttonStyle: {
         width: "70px",
@@ -34,25 +34,25 @@ class SearchInput extends Component {
         backgroundColor: "#4b81c9",
         boxSizing: "border-box",
         border: "0px",
-        borderRadius: "4px"
+        borderRadius: "4px",
       }
     };
 
     return (
       <div className="search">
-        <input 
+        <input
           className="search-input"
           style={style.inputStyle}
-          type="text" 
+          type="text"
           placeholder="City name"
           onChange={event => this.setState({searchValue: event.target.value})}
           onKeyPress={(e) => {
             if (e.keyCode === 13 || e.key === 'Enter') {
               this.props.clicked(this.state.searchValue);
             }
-          }} 
+          }}
         />
-        <button 
+        <button
           style={style.buttonStyle}
           className="search-button"
           onClick={() => this.props.clicked(this.state.searchValue)}
