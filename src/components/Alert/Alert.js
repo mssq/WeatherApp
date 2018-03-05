@@ -1,24 +1,16 @@
-import { Component } from 'react'
 import AlertS from 'react-s-alert';
  
-class Alert extends Component  {
+const alert = (props) => {
+  const errorMessage = props.message.charAt(0).toUpperCase() + props.message.slice(1);
 
-  showAlert() {
-    // Capitalize the first letter
-    const errorMessage = this.props.message.charAt(0).toUpperCase() + this.props.message.slice(1);
+  AlertS.error(errorMessage, {
+    position: 'top',
+    effect: 'scale',
+    timeout: 2500,
+    offset: 20
+  });
 
-    AlertS.error(errorMessage, {
-      position: 'top',
-      effect: 'scale',
-      timeout: 2500,
-      offset: 20
-    });
-  }
-
-  render () {
-    this.showAlert();
-    return null;
-  }
+  return null;
 }
  
-export default Alert;
+export default alert;
