@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { FETCH_WEATHER_START, FETCH_WEATHER_ERROR,
-  RECEIVE_WEATHER } from '../constants';
+  RECEIVE_WEATHER, apikey } from '../constants';
 
 const fetchWeather = (city) => {
-  const apikey = 'da88b7a71e00b89efe05d664ac56ea02';
-
   return (dispatch) => {
     dispatch({ type: FETCH_WEATHER_START });
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`)

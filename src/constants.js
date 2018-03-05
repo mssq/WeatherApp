@@ -1,3 +1,4 @@
 export const FETCH_WEATHER_START = 'FETCH_WEATHER_START';
 export const FETCH_WEATHER_ERROR = 'FETCH_WEATHER_ERROR';
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
+export const apikey = 'da88b7a71e00b89efe05d664ac56ea02';
