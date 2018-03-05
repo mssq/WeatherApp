@@ -41,7 +41,7 @@ class WeatherCard extends Component {
 
   renderCard = (weather) => {
     let buttons = null;
-    if (this.props.saved) {
+    if (!this.props.saved) {
       buttons = (
         <div className="weather-buttons">
           <button
@@ -107,7 +107,7 @@ class WeatherCard extends Component {
     // and show the delete button for saved weathers
     let deleteButton = null;
     let savedStyle = style.weatherCountry;
-    if (!this.props.saved) {
+    if (this.props.saved) {
       savedStyle = style.weatherCountrySaved;
       deleteButton = (
         <div

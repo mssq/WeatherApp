@@ -73,7 +73,7 @@ class App extends Component {
             key={weather.id}
             weather={weather}
             error={this.props.error}
-            saved={false}
+            saved
             add={this.addWeather}
             remove={this.removeWeather}
           />
@@ -91,7 +91,7 @@ class App extends Component {
       result = (
         <WeatherCard
           weather={this.props.weather}
-          saved
+          saved={false}
           loading={this.props.loading}
           error={this.props.error}
           add={this.addWeather}
