@@ -1,4 +1,4 @@
-# How to Install WeatherApp
+# WeatherApp
 
 ## Running locally
 - `git clone` - clone this repo
@@ -8,5 +8,13 @@
 - `open http://localhost:3000` - to view the app.
 
 ## Tests
+- `npm test` to run the tests with Jest.
 
-Run `npm test` to run the tests with Jest.
+## Features
+- Type city name to the search bar and press Search-button to fetch the weather from that city
+- Press ✓-button to save that weather to the interface
+- Press ✕-button to remove saved weather from the interface
+- Error messages for
+  - Empty search
+  - When fetching things that are not cities
+  - When adding duplicate weathers to the interface
