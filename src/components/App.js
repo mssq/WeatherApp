@@ -99,7 +99,8 @@ class App extends Component {
 
     return (
       <div className='App'>
-        <Header />
+        <Header 
+          title='Weather Forecast For Cities' />
 
         <SearchInput clicked={this.searchClicked}/>
 
