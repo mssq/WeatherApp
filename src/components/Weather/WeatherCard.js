@@ -40,21 +40,6 @@ class WeatherCard extends Component {
   convertToCelcius = kelvin => Math.round((kelvin - 273.15));
 
   renderCard = (weather) => {
-    let buttons = null;
-    if (!this.props.saved) {
-      buttons = (
-        <div className="weather-buttons">
-          <button
-            type="button"
-            className="button-add"
-            onClick={() => this.props.add(weather)}
-          >
-            ✓
-          </button>
-        </div>
-      );
-    }
-
     const style = {
       weather: {
         marginBottom: '20px',
@@ -105,8 +90,11 @@ class WeatherCard extends Component {
     // if user saved the weather
     // change the styling for that card
     // and show the delete button for saved weathers
+    // else show adding button
+    let addButton = null;
     let deleteButton = null;
     let savedStyle = style.weatherCountry;
+
     if (this.props.saved) {
       savedStyle = style.weatherCountrySaved;
       deleteButton = (
@@ -118,6 +106,18 @@ class WeatherCard extends Component {
           onKeyPress={() => this.props.remove(weather.id)}
         >
           &#x2715;
+        </div>
+      );
+    } else {
+      addButton = (
+        <div className="weather-buttons">
+          <button
+            type="button"
+            className="button-add"
+            onClick={() => this.props.add(weather)}
+          >
+            ✓
+          </button>
         </div>
       );
     }
@@ -140,7 +140,7 @@ class WeatherCard extends Component {
             <h2>Wind: {weather.wind} m/s</h2>
           </div>
         </div>
-        {buttons}
+        {addButton}
       </div>
     );
   }
