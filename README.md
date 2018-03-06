@@ -2,8 +2,8 @@
 
 ## Running locally
 - `git clone` - clone this repo
-- `cd weather-app`- move to the folder
-- `npm install` - install required node_modules
+- `cd WeatherApp`- move to the folder
+- `npm install` - install required packages
 - `npm start` - start the application
 - `open http://localhost:3000` - to view the app.
 
